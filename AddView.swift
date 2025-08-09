@@ -43,24 +43,23 @@ struct AddView: View {
                     .keyboardType(.decimalPad)
                     .focused($amountIsFocused)
             }
-        .navigationTitle("Add an expense")
-        .preferredColorScheme(.dark)
-        .toolbar {
-            Button("Save") {
-                let item = ExpenseItem(name: name, type: type, amount: amount, currency: chooseCurrency)
-                expenses.items.append(item)
-                dismiss()
-                
-              }
-            .foregroundStyle(.white)
-           }
-        .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button("Done") {
-                    amountIsFocused = false
-                  }
-               }
+            .navigationTitle("Add an expense")
+            .preferredColorScheme(.dark)
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button("Save") {
+                        let item = ExpenseItem(name: name, type: type, amount: amount, currency: chooseCurrency)
+                        expenses.items.append(item)
+                        dismiss()
+                    }
+                    .foregroundStyle(.white)
+                }
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") {
+                        amountIsFocused = false
+                    }
+                }
             }
         }
     }
