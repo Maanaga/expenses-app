@@ -15,6 +15,8 @@ struct AddView: View {
     @State private var amount = 0.0
     @State var chooseCurrency = "USD"
     
+    @FocusState private var amountIsFocused: Bool
+    
     var expenses: Expenses
     
     let types = ["Personal", "Business"]
@@ -24,6 +26,7 @@ struct AddView: View {
                 TextField("Expense type...", text: $name)
                     .keyboardType(.alphabet)
                     .autocorrectionDisabled()
+                    .focused($amountIsFocused)
                 Picker("Type", selection: $type) {
                     ForEach(types, id: \.self) {
                         Text($0)
@@ -37,9 +40,9 @@ struct AddView: View {
                 }
                 .pickerStyle(.segmented)
                 TextField("Amount", value: $amount, format: .currency(code: chooseCurrency))
+                    .keyboardType(.decimalPad)
+                    .focused($amountIsFocused)
             }
-            .keyboardType(.decimalPad)
-        
         .navigationTitle("Add an expense")
         .preferredColorScheme(.dark)
         .toolbar {
@@ -51,6 +54,14 @@ struct AddView: View {
               }
             .foregroundStyle(.white)
            }
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("Done") {
+                    amountIsFocused = false
+                  }
+               }
+            }
         }
     }
 }
