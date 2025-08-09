@@ -8,11 +8,53 @@
 import SwiftUI
 
 struct AddView: View {
+    @Environment(\.dismiss) var dismiss
+    
+    @State private var name = ""
+    @State private var type = "Personal"
+    @State private var amount = 0.0
+    @State var chooseCurrency = "USD"
+    
+    var expenses: Expenses
+    
+    let types = ["Personal", "Business"]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            Form {
+                TextField("Expense type...", text: $name)
+                    .keyboardType(.alphabet)
+                    .autocorrectionDisabled()
+                Picker("Type", selection: $type) {
+                    ForEach(types, id: \.self) {
+                        Text($0)
+                    }
+                }
+                Section("CHOOSE YOUR PREFERRED CURRENCY") {
+                    Picker("Choose your preferred currency", selection: $chooseCurrency) {
+                        Text("USD").tag("USD")
+                        Text("EUR").tag("EUR")
+                    }
+                }
+                .pickerStyle(.segmented)
+                TextField("Amount", value: $amount, format: .currency(code: chooseCurrency))
+            }
+            .keyboardType(.decimalPad)
+        
+        .navigationTitle("Add an expense")
+        .preferredColorScheme(.dark)
+        .toolbar {
+            Button("Save") {
+                let item = ExpenseItem(name: name, type: type, amount: amount, currency: chooseCurrency)
+                expenses.items.append(item)
+                dismiss()
+                
+              }
+            .foregroundStyle(.white)
+           }
+        }
     }
 }
 
 #Preview {
-    AddView()
+    AddView(expenses: Expenses())
 }
