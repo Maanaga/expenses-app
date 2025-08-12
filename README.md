@@ -97,33 +97,4 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## Future Enhancements
 
-- [ ] More currency options
-- [ ] Expense categories beyond Personal/Business
-- [ ] Data export functionality
-- [ ] Charts and analytics
-- [ ] iCloud sync
-- [ ] Receipt photo attachments
-- [ ] Search and filtering
-- [ ] Expense reports
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Built following the Hacking with Swift SwiftUI tutorial series
-- Icons provided by SF Symbols
-- SwiftUI framework by Apple
-
-## Contact
-
-Luka Managadze - [your.email@example.com](mailto:your.email@example.com)
-
-Project Link: [https://github.com/yourusername/iExpense](https://github.com/yourusername/iExpense)
-
----
-
-Star this repo if you found it helpful!
